@@ -17,9 +17,29 @@ function updateLocalStorage(){
     localStorage.setItem("myGrabbedLists", JSON.stringify(urlGrabbedLists));
 }
 
+function toast(valid){
+    
+    let x = document.getElementById("snackbar");
+    x.className = "show";
+
+    if(valid){
+        x.innerHTML = 'Saved';
+    }else{
+        x.innerHTML = 'Unsaved, Please enter a valid url.';
+    }
+    
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2000);
+
+}
+
 inputBtn.addEventListener('click', function(){
     const url = document.getElementById('input-el');
-    urlGrabbedLists.push(url.value);
+    if(url.value){
+        urlGrabbedLists.push(url.value);
+        toast(1);
+    }else{
+        toast(0);
+    }
     
     url.value = null;
     // localStorage.setItem("myGrabbedLists", JSON.stringify(urlGrabbedLists));
@@ -41,6 +61,7 @@ tabBtn.addEventListener('click', function(){
         urlGrabbedLists.push(tabs[0].url);
         updateLocalStorage();
         render(urlGrabbedLists);
+        toast(1);
         
         // var activeTab = tabs[0];
         // var activeTabId = activeTab.id; // or do whatever you need
@@ -61,7 +82,7 @@ async function render(urls){
 
     for(let i=0; i<urls.length; i++){
 
-        listItems += "<li>"+`<a href=${urls[i]} target="_blank">${urls[i]}</a>`+"</li>";
+        listItems += `<li><a href=${urls[i]} target="_blank">${urls[i]}</a></li>`;
     }
     
     ulEl.innerHTML = listItems;
