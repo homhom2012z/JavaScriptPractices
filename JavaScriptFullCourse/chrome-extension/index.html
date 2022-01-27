@@ -6,16 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chrome Extension</title>
     <link rel="stylesheet" href="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(window).on('scroll', function () {
+                /**
+                 THIS SHOULD NOT BE CALLED!!!
+                So, change some colors to warn about it, if it happens.
+                */
+                $('#url-lists').css('background-color', 'red');
+            });
+        });
+    </script>
 </head>
 <body>
-    <h2>URL Grabber</h2>
-    <input type="text" id="input-el">
-    <button id="input-btn">SAVE URL</button>
-    <button id="tab-btn">SAVE TAB</button>
-    <button id="delete-btn">DELETE ALL URL</button>
-    <div id="url-lists">
-        <ul id="ul-el"></ul>
+
+    <div class="navbar">
+        <h4>URL Grabber</h4>
     </div>
+
+    <div class="app-body">
+        <input type="text" id="input-el">
+        <button id="input-btn">SAVE URL</button>
+        <button id="tab-btn">SAVE TAB</button>
+        <button id="delete-btn">DELETE ALL URL</button>
+        <div id="url-lists">
+            <ul id="ul-el"></ul>
+        </div>
+    </div>
+
     <script src="index.js"></script>
 </body>
 </html>
