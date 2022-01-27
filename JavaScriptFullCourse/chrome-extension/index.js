@@ -37,14 +37,15 @@ inputBtn.addEventListener('click', function(){
     if(url.value){
         urlGrabbedLists.push(url.value);
         toast(1);
+        // localStorage.setItem("myGrabbedLists", JSON.stringify(urlGrabbedLists));
+        updateLocalStorage();
+        render(urlGrabbedLists);
     }else{
         toast(0);
     }
-    
+
     url.value = null;
-    // localStorage.setItem("myGrabbedLists", JSON.stringify(urlGrabbedLists));
-    updateLocalStorage();
-    render(urlGrabbedLists);
+    
 })
 
 deleteBtn.addEventListener('dblclick', function(){
